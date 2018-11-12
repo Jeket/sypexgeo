@@ -31,7 +31,7 @@ class SypexGeoServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		// Register providers.
-		$this->app['sypexgeo'] = $this->app->share(function($app)
+		$this->app['sypexgeo'] = $this->app->singleton('Scriptixru\SypexGeo', function($app)
 		{
             $sypexConfig = $app['config'];
             $sypexConfigType = $sypexConfig->get('sypexgeo.sypexgeo.type', array());
@@ -54,7 +54,7 @@ class SypexGeoServiceProvider extends ServiceProvider {
 			//return new GeoIP($app['config'], $app["session.store"]);
 
 
-            return new SypexGeo($sxgeo, $app['config']);
+            return new Scriptixru\SypexGeo($sxgeo, $app['config']);
 		});
 	}
 
